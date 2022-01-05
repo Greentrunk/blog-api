@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 
 import { selectAllPosts, fetchPosts } from "./postsSlice";
+import { selectLoggedIn } from "../auth/loginSlice";
 
 
 export const AllPosts = () => {
     const dispatch = useDispatch();
     const posts = useSelector(selectAllPosts);
+    const isLoggedIn = useSelector(selectLoggedIn);
 
     const postStatus = useSelector(state => state.posts.status);
 
@@ -17,6 +19,8 @@ export const AllPosts = () => {
         }
     }, [postStatus, dispatch]);
 
+    const deletePost = (isLoggedIn) ? <p className="text-white">hi</p> : ''
+
     const allPosts = posts.map(post => (
         <article className="bg-slate-900 rounded-xl p-12 shadow-md" key={post._id}>
             <div className="flex flex-col items-center gap-3">
@@ -24,6 +28,7 @@ export const AllPosts = () => {
                 <p className="text-neutral-500 italic">posted {post.date.substring(0,10)}</p>
                 <Link className="text-white bg-sky-500/50 px-6 py-1 rounded-lg hover:bg-sky-500/75" to={`/posts/${post._id}`}>View Post</Link>
             </div>
+            {deletePost}
         </article>
     ));
 
@@ -34,6 +39,5 @@ export const AllPosts = () => {
                 {allPosts}
             </div>
         </section>
-        
     );
 }

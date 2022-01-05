@@ -11,6 +11,7 @@ import {Footer} from './components/Footer';
 import {Main} from './components/Main';
 import { SinglePost } from "./features/posts/SinglePost";
 import { Login } from "./features/auth/Login";
+import { NewPostForm } from "./features/posts/NewPostForm";
 
 const App = () => {
     return (
@@ -21,6 +22,8 @@ const App = () => {
                     <Route exact path='/' element={<Main/>}/>
                     <Route exact path='/posts/:postId' element={<SinglePost/>}/>
                     <Route exact path='/login' element={<Login/>}/>
+    
+                    <Route exact path='/posts/new' element={<NewPostForm/>}/>
                 </Routes>
                 <Footer />
             </div>

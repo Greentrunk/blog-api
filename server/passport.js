@@ -42,7 +42,7 @@ passport.use(
             try {
                 return done(null, token.user);
             } catch (err) {
-                done(error);
+                done(err);
             }
         }
     )

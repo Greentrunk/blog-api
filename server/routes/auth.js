@@ -9,8 +9,8 @@ router.post('/login', async (req, res, next) => {
     passport.authenticate('local', {session: false}, async (err, user) => {
         try {
             if (err || !user) {
-                const error = new Error('An error occured');
-                return next(error);
+                res.status(401).json({message: 'Wrong Username or Password'});
+                return next(err);
             }
 
             req.login(user, {session: false}, async (error) => {

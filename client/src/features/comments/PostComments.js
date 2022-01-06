@@ -1,15 +1,24 @@
 import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectAllCommentsForPost, fetchComments} from "./commentsSlice";
+import { selectAllCommentsForPost, fetchComments, deleteComment} from "./commentsSlice";
+import { selectLoggedIn, selectToken } from "../auth/loginSlice";
 
 export const PostComments = (props) => {
     const dispatch = useDispatch();
-    
     const post = props.postId;
-
-    const comments = useSelector(state => selectAllCommentsForPost(state, post))
-    
+    const comments = useSelector(state => selectAllCommentsForPost(state, post));
     const commentsStatus = useSelector(state => state.comments.status);
+    const token = useSelector(selectToken);
+    const isLoggedIn = useSelector(selectLoggedIn);
+    const attemptDelete = async (commentId) => {
+        try {
+            await dispatch(deleteComment({commentId, token})).unwrap();
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const deleteBtn = (commentId) => (isLoggedIn) ? <button type="button" className="text-xl text-white font-bold absolute left-0 px-5 py-1 bg-sky-500 rounded-lg hover:bg-sky-500/75" onClick={() => attemptDelete(commentId)}>Delete Comment</button> : '';
 
     useEffect(() => {
         if (commentsStatus === 'idle') {
@@ -32,6 +41,8 @@ export const PostComments = (props) => {
                 <p className="text-neutral-500">on <span className="text-neutral-500 italic">{comment.timestamp.substring(0, 10)}</span> at <span className="text-neutral-500 italic">{comment.timestamp.substring(11,16)}</span></p>
             </div>
             <p className="text-center">{comment.text}</p>
+            
+            {deleteBtn(comment._id)}
         </article>
     ));
 

@@ -6,8 +6,8 @@ import {addNewComment} from "./commentsSlice";
 export const AddCommentForm =(props) => {
     const dispatch = useDispatch();
 
-    const [comment_handle, updateHandle] = useState('');
-    const [comment_text, updateText] = useState('');
+    const [comment_handle, updateHandle] = useState("");
+    const [comment_text, updateText] = useState("");
 
     const onHandleChange = e => updateHandle(e.target.value);
     const onTextChange = e => updateText(e.target.value);

@@ -4,9 +4,11 @@ import { selectToken, selectLoggedIn } from "../auth/loginSlice";
 import { newPost } from "./postsSlice";
 
 import { Forbidden } from "../auth/Forbidden";
+import { useNavigate } from "react-router-dom";
 
 export const NewPostForm = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const token = useSelector(selectToken);
     const isLoggedIn = useSelector(selectLoggedIn);
 
@@ -21,7 +23,8 @@ export const NewPostForm = () => {
     const attemptNewPost = async () => {
         if (canSubmit) {
             try {
-                await dispatch(newPost({post_title: '11111', post_text: '222222'}, token)).unwrap();
+                await dispatch(newPost({post_title, post_text, token})).unwrap();
+                navigate('/posts/unpublished', {replace: true});
             } catch (err) {
                 console.log(err);
             }
@@ -29,10 +32,10 @@ export const NewPostForm = () => {
     }
 
     let content;
-    //if (!isLoggedIn) {
-    //    content = (<Forbidden/>)
-    //}
-    //else {
+    if (!isLoggedIn) {
+        content = (<Forbidden/>)
+    }
+    else {
         content = (
             <section>
                 <form>
@@ -42,7 +45,7 @@ export const NewPostForm = () => {
                 </form>
             </section>
         );
-    //}
+    }
 
     return (
         content

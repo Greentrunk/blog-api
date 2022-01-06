@@ -1,16 +1,33 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 
-import { selectPostById } from "./postsSlice";
+import { selectPostById, deletePost } from "./postsSlice";
+import { selectLoggedIn, selectToken } from "../auth/loginSlice";
+
 import { PostComments } from "../comments/PostComments";
 import { AddCommentForm } from "../comments/AddCommentForm";
+import { Link } from "react-router-dom";
 
 export const SinglePost = () => {
+    const dispatch = useDispatch();
     const {postId} = useParams();
-    
     const post = useSelector(state => selectPostById(state, postId));
-    
+    const token = useSelector(selectToken);
+    const isLoggedIn = useSelector(selectLoggedIn);
+    const navigate = useNavigate();
+
+    const attemptDelete = async () => {
+        try {
+            await dispatch(deletePost({postId, token})).unwrap();
+            navigate('/', {replace: true});
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const deleteBtn = (isLoggedIn) ? <button type="button" className="text-xl text-white font-bold absolute left-0 px-5 py-1 bg-sky-500 rounded-lg hover:bg-sky-500/75" onClick={attemptDelete}>Delete Post</button> : '';
+    const updateBtn = (isLoggedIn) ? <Link to={`/posts/update/${postId}`}>Update Post</Link> : '';
     if (!post) {
         return (
             <article className="h-80 flex justify-center items-center text-4xl">
@@ -26,7 +43,8 @@ export const SinglePost = () => {
                 <span className="text-neutral-500 italic">Posted on {post.date.substring(0,10)}</span>
                 <p className="indent-8 text-xl">{post.text}</p>
             </article>
-
+            {deleteBtn}
+            {updateBtn}
             <PostComments postId={postId}/>
             <AddCommentForm postId={postId} />
         </section>

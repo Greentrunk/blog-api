@@ -15,7 +15,12 @@ export const fetchComments = createAsyncThunk('comments/fetchComments', async po
 export const addNewComment = createAsyncThunk('comments/addNewComment', async comment => {
     const response = await axios.post('http://localhost:5000/posts/comments/new', comment);
     return response.data;
-})
+});
+
+export const deleteComment = createAsyncThunk('comments/deleteComment', async body => {
+    const response = await axios.delete(`http://localhost:5000/secure/posts/${body.commentId}/comment?secret_token=${body.token}`);
+    return response.data;
+});
 
 const commentsSlice = createSlice({
     name: 'comments',
@@ -35,7 +40,11 @@ const commentsSlice = createSlice({
                 state.error = action.error.message;
             })
             .addCase(addNewComment.fulfilled, (state, action) => {
-                state.comments.push(action.payload)
+                state.comments.unshift(action.payload);
+            })
+            .addCase(deleteComment.fulfilled, (state, action) => {
+                const index = state.comments.findIndex((comment) => comment._id === action.payload._id);
+                state.comments.splice(index, 1);
             })
     }
 });

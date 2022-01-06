@@ -10,9 +10,7 @@ export const Navbar = () => {
     const isLoggedIn = useSelector(selectLoggedIn);
 
     const attemptLogout = async () => {
-        
         dispatch(logout());
-       
     }
 
     const loginBtn = (!isLoggedIn) ? <Link className="text-xl text-white font-bold absolute right-0 px-5 py-1 bg-sky-500 rounded-lg hover:bg-sky-500/75" to="/login">Login</Link> : <button type='button' className="text-xl text-white font-bold absolute right-0 px-5 py-1 bg-sky-500 rounded-lg hover:bg-sky-500/75" onClick={attemptLogout}>Logout</button>;

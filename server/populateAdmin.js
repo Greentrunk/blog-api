@@ -46,7 +46,3 @@ const createPost = async (title, text, date, published) => {
         console.log(error.message);
     }
 }
-
-// createAdmin('Christopher', 'Pohl', 'CJPohl', 'ilikeass', true);
-
-createPost('First Post', 'Hello, world asdkljgn asdjkg asdfjg asdfjg asdjkg asjkgn', Date.now(), true);

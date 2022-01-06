@@ -10,21 +10,12 @@ router.post('/', new_post_post);
 router.delete('/:id', delete_post_delete);
 
 // Delete comment DELETE
-router.delete('/:id/comments', delete_comment_delete)
+router.delete('/:id/comment', delete_comment_delete);
 
 // Update post PUT
 router.put('/:id/update', update_post_put);
 
 // Publish post PUT
 router.put('/:id/publish', publish_post_put);
-
-// Test Secure Route
-router.get('/profile', (req, res, next) => {
-    res.json({
-        message: 'Nice job!',
-        user: req.user,
-        token: req.query.secret_token
-    });
-});
 
 export default router;

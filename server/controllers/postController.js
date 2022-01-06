@@ -13,16 +13,6 @@ export const posts_get = async (req, res) => {
     }
 };
 
-// One Post GET - Call for Post PUT requests
-export const one_post_get = async (req, res) => {
-    //try {
-    //    const onePost = await Post.findById(req.params.id);
-    //    res.status(200).json(onePost);
-    //} catch (err) {
-    //    res.status(404).json({ message: err.message});
-    //}
-}
-
 // Post comments GET
 export const post_comments_get = async (req, res) => {
     try {
@@ -110,18 +100,18 @@ export const new_comment_post = [
 export const delete_post_delete = async (req, res) => {
     try {
         // Gather and delete post's comments
-        const comments = await Comment.deleteMany({'post': req.params.id});
+        await Comment.deleteMany({'post': req.params.id});
         
         try {
             // delete post
             const deletedPost = await Post.findByIdAndDelete(req.params.id);
-            res.status(200).json(deletedPost).json(comments);
+            res.status(200).json(deletedPost);
         } catch (err) {
-            res.status(404).json({ message: err.message })
+            res.status(404).json({ message: err.message });
         }
 
     } catch (err) {
-        res.status(404).json({ message: err.message })
+        res.status(404).json({ message: err.message });
     }
 }
 
@@ -157,7 +147,7 @@ export const update_post_put = [
             );
             
             try {
-                const updatedPost = await Post.findByIdAndUpdate(req.params.id, post);
+                const updatedPost = await Post.findByIdAndUpdate(req.params.id, post, {new: true});
                 res.status(200).json(updatedPost);
             } catch (err) {
                 res.status(404).json({ message: err.message});
@@ -177,7 +167,7 @@ export const publish_post_put = async (req, res) => {
 
     // push update to db
     try {
-        const updatedPost = await Post.findByIdAndUpdate(req.params.id, newPost);
+        const updatedPost = await Post.findByIdAndUpdate(req.params.id, newPost, {new: true});
         res.status(200).json(updatedPost);
     } catch (err) {
         res.status(404).json({ message: err.message });

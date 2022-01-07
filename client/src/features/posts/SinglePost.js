@@ -26,8 +26,8 @@ export const SinglePost = () => {
         }
     }
 
-    const deleteBtn = (isLoggedIn) ? <button type="button" className="text-xl text-white font-bold absolute left-0 px-5 py-1 bg-sky-500 rounded-lg hover:bg-sky-500/75" onClick={attemptDelete}>Delete Post</button> : '';
-    const updateBtn = (isLoggedIn) ? <Link to={`/posts/update/${postId}`}>Update Post</Link> : '';
+    const deleteBtn = (isLoggedIn) ? <button type="button" className="text-3xl font-light tracking-wider border-2 border-solid border-cyan-600/10 p-2" onClick={attemptDelete}>Delete Post</button> : '';
+    const updateBtn = (isLoggedIn) ? <Link to={`/posts/update/${postId}`} className="text-3xl font-light tracking-wider border-2 border-solid border-cyan-600/10 p-2">Update Post</Link> : '';
     if (!post) {
         return (
             <article className="h-80 flex justify-center items-center text-4xl">
@@ -37,14 +37,17 @@ export const SinglePost = () => {
     }
 
     return (
-        <section className="px-32 leading-9">
+        <section className="w-4/5 max-w-7xl mx-auto px-32 py-10 flex flex-col items-center gap-10">
             <article className="flex flex-col items-center gap-2">
-                <h2 className="text-5xl text-center">{post.title}</h2>
+                <h2 className="text-5xl font-light tracking-wider">{post.title}</h2>
                 <span className="text-neutral-500 italic">Posted on {post.date.substring(0,10)}</span>
-                <p className="indent-8 text-xl">{post.text}</p>
+                <p className="indent-8 font-light text-2xl">{post.text}</p>
             </article>
-            {deleteBtn}
-            {updateBtn}
+            <div className="flex w-full justify-evenly">
+                {deleteBtn}
+                {updateBtn}    
+            </div>
+         
             <PostComments postId={postId}/>
             <AddCommentForm postId={postId} />
         </section>

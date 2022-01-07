@@ -11,7 +11,7 @@ export const AllPosts = () => {
     const isLoggedIn = useSelector(selectLoggedIn);
     const postStatus = useSelector(state => state.posts.status);
 
-    const unpublishedList = (isLoggedIn) ? <Link to={`/posts/unpublished`}>Unpublished Posts</Link> : '';
+    const unpublishedList = (isLoggedIn) ? <Link to={`/posts/unpublished`} className="text-3xl font-light tracking-wider border-2 border-solid border-cyan-600/10 p-2">Unpublished Posts</Link> : '';
 
     useEffect(() => {
         if (postStatus === 'idle') {
@@ -20,22 +20,22 @@ export const AllPosts = () => {
     }, [postStatus, dispatch]);
 
     const allPosts = posts.map(post => (
-        <article className="bg-slate-900 rounded-xl p-12 shadow-md" key={post._id}>
+        <article className="bg-gray-800 p-12 shadow-md border-solid border-2 border-cyan-600/80" key={post._id}>
             <div className="flex flex-col items-center gap-3">
-                <h3 className="text-white text-3xl">{post.title}</h3>
-                <p className="text-neutral-500 italic">posted {post.date.substring(0,10)}</p>
-                <Link className="text-white bg-sky-500/50 px-6 py-1 rounded-lg hover:bg-sky-500/75" to={`/posts/${post._id}`}>View Post</Link>
+                <h3 className="text-white/80 font-light text-3xl">{post.title}</h3>
+                <p className="text-neutral-400/60 italic">posted {post.date.substring(0,10)}</p>
+                <Link className="text-white font-light bg-cyan-600 px-6 py-1 hover:bg-cyan-600/75" to={`/posts/${post._id}`}>View Post</Link>
             </div>
         </article>
     ));
 
     return (
-        <section>
-            <h2 className="text-5xl text-center mb-10">Posts</h2>
-            <div className="grid grid-cols-3 gap-2 px-32">
+        <section className="w-4/5 max-w-7xl mx-auto py-20 flex flex-col items-center gap-10">
+            <h2 className="text-5xl font-light tracking-wider">Post Releases</h2>
+            <div className="grid grid-cols-3 gap-5 px-20">
                 {allPosts}
             </div>
-            {unpublishedList}
+            {unpublishedList}    
         </section>
     );
 }

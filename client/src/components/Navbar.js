@@ -13,17 +13,27 @@ export const Navbar = () => {
         dispatch(logout());
     }
 
-    const loginBtn = (!isLoggedIn) ? <Link className="text-xl text-white font-bold absolute right-0 px-5 py-1 bg-sky-500 rounded-lg hover:bg-sky-500/75" to="/login">Login</Link> : <button type='button' className="text-xl text-white font-bold absolute right-0 px-5 py-1 bg-sky-500 rounded-lg hover:bg-sky-500/75" onClick={attemptLogout}>Logout</button>;
+    const loginBtn = (!isLoggedIn) ? <Link className="text-cyan-600 tracking-wider font-light" to="/login">Login</Link> : <button type='button' className="text-cyan-600 tracking-wider font-light" onClick={attemptLogout}>Logout</button>;
 
-    const addPostBtn = (isLoggedIn) ? <Link className="text-xl text-white font-bold absolute left-0 px-5 py-1 bg-sky-500 rounded-lg hover:bg-sky-500/75" to="/posts/new">New Post</Link> : '';
+    const addPostBtn = (isLoggedIn) ? <Link className="text-cyan-600 tracking-wider font-light" to="/posts/new">New Post</Link> : '';
     
     return (
-        <header className="p-5">
-            <nav className="relative flex justify-center items-center">
-                <Link to='/' className="text-8xl">The Blog</Link>
-                {addPostBtn}
-                {loginBtn}
-            </nav>
+        <header className="bg-gray-800 py-10">
+            <div className="w-4/5 max-w-7xl mx-auto">
+                <nav className="relative flex justify-between items-center">
+                    <Link to='/' className="flex items-center gap-3 text-2xl text-cyan-600 uppercase tracking-widest font-light">
+                        <i className="fas fa-atom text-cyan-600 text-4xl"></i><h1>Atomic Blog</h1>
+                    </Link>    
+                    <div className="flex items-center gap-20">
+                        {addPostBtn}
+                        {loginBtn}
+                        <a className='text-cyan-600 text-4xl' href="https://github.com/CJPohl" target="_blank" rel="noreferrer">
+                            <i className="fab fa-github hover:rotate-180" />
+                        </a>
+                    </div>
+                </nav>
+            </div>
+            
         </header>
     );
 };

@@ -1,9 +1,9 @@
 export const Footer = () => {
     return (
-      <div className="bottom-0 left-0 px-32 flex justify-center items-center gap-3 text-xl">
+      <div className="flex justify-center items-center text-lg font-medium py-10 gap-3">
         <p>Copyright @ 2021 Christopher J. Pohl</p>
-        <a href="https://github.com/CJPohl" target="_blank" rel="noreferrer">
-          <i className="fab fa-github text-5xl hover:rotate-180" />
+        <a className='text-cyan-600 text-4xl' href="https://github.com/CJPohl" target="_blank" rel="noreferrer">
+          <i className="fab fa-github hover:rotate-180" />
         </a>
       </div>
     );

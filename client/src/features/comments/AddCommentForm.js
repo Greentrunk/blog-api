@@ -27,12 +27,12 @@ export const AddCommentForm =(props) => {
     }
     
     return (
-        <section className="my-6">
-            <h2 className="text-5xl text-center mb-10">New Comment</h2>
+        <section className="py-10 flex flex-col gap-10">
+            <h2 className="text-5xl font-light tracking-wider">New Comment</h2>
             <form className="flex flex-col gap-3">
-                <input type='text' className="px-3" value={comment_handle} onChange={onHandleChange} placeholder="Handle"></input>
-                <textarea className="resize-none px-3" value={comment_text} onChange={onTextChange} placeholder="Message"></textarea>
-                <button className="text-xl text-white font-bold bg-sky-500 rounded-lg hover:bg-sky-500/75" type="button" onClick={addComment} disabled={!canSubmit}>Submit</button>
+                <input type='text' className="p-3 bg-slate-200" value={comment_handle} onChange={onHandleChange} placeholder="Handle"></input>
+                <textarea className="resize-none p-3 bg-slate-200" value={comment_text} onChange={onTextChange} placeholder="Message"></textarea>
+                <button className="text-3xl font-light tracking-wider" type="button" onClick={addComment} disabled={!canSubmit}>Submit</button>
             </form>
         </section>
     );

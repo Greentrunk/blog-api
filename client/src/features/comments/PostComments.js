@@ -18,7 +18,7 @@ export const PostComments = (props) => {
         }
     }
 
-    const deleteBtn = (commentId) => (isLoggedIn) ? <button type="button" className="text-xl text-white font-bold absolute left-0 px-5 py-1 bg-sky-500 rounded-lg hover:bg-sky-500/75" onClick={() => attemptDelete(commentId)}>Delete Comment</button> : '';
+    const deleteBtn = (commentId) => (isLoggedIn) ? <button type="button" onClick={() => attemptDelete(commentId)}><i className="fas fa-times text-cyan-600/75"></i></button> : '';
 
     useEffect(() => {
         if (commentsStatus === 'idle') {
@@ -35,23 +35,26 @@ export const PostComments = (props) => {
     }
 
     const allComments = comments.slice(0, 10).map(comment => (
-        <article className="w-full bg-slate-200 rounded-3xl flex flex-col p-4" key={comment._id}>
+        <article className="relative w-full bg-slate-200 flex flex-col p-4" key={comment._id}>
             <div className="flex justify-between">
                 <p className="text-neutral-500">posted by <span className="text-neutral-500 italic">{comment.handle}</span></p>
-                <p className="text-neutral-500">on <span className="text-neutral-500 italic">{comment.timestamp.substring(0, 10)}</span> at <span className="text-neutral-500 italic">{comment.timestamp.substring(11,16)}</span></p>
+                <div className="flex gap-3 items-center">
+                    <p className="text-neutral-500">on <span className="text-neutral-500 italic">{comment.timestamp.substring(0, 10)}</span> at <span className="text-neutral-500 italic">{comment.timestamp.substring(11,16)}</span></p>
+                    {deleteBtn(comment._id)}
+                </div>
+               
+                
             </div>
-            <p className="text-center">{comment.text}</p>
-            
-            {deleteBtn(comment._id)}
+            <p className="text-center tracking-wider">{comment.text}</p>
         </article>
     ));
 
 
 
     return (
-        <section className="mt-6">
-            <h2 className="text-5xl text-center mb-10">Comments</h2>
-            <div className="flex flex-col items-center gap-4">
+        <section className="mt-6 w-full px-32 py-10 flex flex-col items-center gap-10">
+            <h2 className="text-5xl font-light tracking-wider">Comments</h2>
+            <div className="flex flex-col items-center gap-4 w-full">
                 {allComments}
             </div>
            

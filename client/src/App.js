@@ -19,7 +19,7 @@ import { NotFound } from "./components/NotFound";
 const App = () => {
     return (
         <Router>
-            <div className="relative h-screen w-4/5 max-w-6xl mx-auto py-10 bg-gradient-to-r from-slate-200 to-slate-300 shadow-xl overflow-auto no-scrollbar">
+            <div className="overflow-auto">
                 <Navbar />
                 <Routes>
                     <Route exact path='/' element={<Main/>}/>

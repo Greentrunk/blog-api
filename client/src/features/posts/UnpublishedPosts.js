@@ -20,12 +20,12 @@ export const UnpublishedPosts = () => {
     }
 
     const allPosts = posts.map(post => (
-        <article className="bg-slate-900 rounded-xl p-12 shadow-md" key={post._id}>
+        <article className="bg-slate-900 p-12 shadow-md" key={post._id}>
             <div className="flex flex-col items-center gap-3">
-                <h3 className="text-white text-3xl">{post.title}</h3>
-                <p className="text-neutral-500 italic">posted {post.date.substring(0,10)}</p>
-                <Link className="text-white bg-sky-500/50 px-6 py-1 rounded-lg hover:bg-sky-500/75" to={`/posts/${post._id}`}>View Post</Link>
-                <button type="button" className="text-white bg-sky-500/50 px-6 py-1 rounded-lg hover:bg-sky-500/75" onClick={() => attemptPublish(post._id)}>Publish</button>
+            <h3 className="text-white/80 font-light text-3xl">{post.title}</h3>
+                <p className="text-neutral-400/60 italic">posted {post.date.substring(0,10)}</p>
+                <Link className="text-white font-light bg-cyan-600 px-6 py-1 hover:bg-cyan-600/75" to={`/posts/${post._id}`}>View Post</Link>
+                <button type="button" className="text-white font-light bg-cyan-600 px-6 py-1 hover:bg-cyan-600/75" onClick={() => attemptPublish(post._id)}>Publish</button>
             </div>
         </article>
     ));
@@ -33,8 +33,8 @@ export const UnpublishedPosts = () => {
     let content;
     if (isLoggedIn) {
         content = (
-            <section>
-                <h2 className="text-5xl text-center mb-10">Unpublished</h2>
+            <section className="w-4/5 max-w-7xl mx-auto flex flex-col items-center gap-10 py-10">
+                <h2 className="text-5xl font-light tracking-wider">Unpublished</h2>
                 <div className="grid grid-cols-3 gap-2 px-32">
                     {allPosts}
                 </div>

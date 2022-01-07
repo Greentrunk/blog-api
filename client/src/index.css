@@ -12,3 +12,19 @@
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
+
+.icon-font-large {
+    font-size: 20rem;
+}
+
+.icon-font-medium {
+    font-size: 10rem;
+}
+
+.icon-font-small {
+    font-size: 5rem;
+}
+
+.login-height {
+    height: 81vh;
+}

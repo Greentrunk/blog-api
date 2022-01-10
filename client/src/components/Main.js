@@ -6,12 +6,12 @@ import { Banner } from "./Banner";
 import { Introduction } from "./Introduction";
 
 export const Main = () => {
-    return (
-        <div className="flex flex-col justify-between ">
-            <Banner />
-            <Introduction />
-            <AllPosts />
-            <About />
-        </div>
-    );
-}
+  return (
+    <div className="flex flex-col justify-between">
+      <Banner />
+      <Introduction />
+      <AllPosts />
+      <About />
+    </div>
+  );
+};

@@ -11,7 +11,7 @@ export const fetchComments = createAsyncThunk(
   "comments/fetchComments",
   async (post) => {
     const response = await axios.get(
-      "http://localhost:5000/posts/comments/all",
+      "https://atomic-blog.herokuapp.com/posts/comments/all",
       post
     );
     return response.data;
@@ -22,7 +22,7 @@ export const addNewComment = createAsyncThunk(
   "comments/addNewComment",
   async (comment) => {
     const response = await axios.post(
-      "http://localhost:5000/posts/comments/new",
+      "https://atomic-blog.herokuapp.com/posts/comments/new",
       comment
     );
     return response.data;
@@ -33,7 +33,7 @@ export const deleteComment = createAsyncThunk(
   "comments/deleteComment",
   async (body) => {
     const response = await axios.delete(
-      `http://localhost:5000/secure/posts/${body.commentId}/comment?secret_token=${body.token}`
+      `https://atomic-blog.herokuapp.com/secure/posts/${body.commentId}/comment?secret_token=${body.token}`
     );
     return response.data;
   }

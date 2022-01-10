@@ -8,13 +8,13 @@ const initialState = {
 };
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
-  const response = await axios.get("http://localhost:5000/posts");
+  const response = await axios.get("https://atomic-blog.herokuapp.com/posts");
   return response.data;
 });
 
 export const newPost = createAsyncThunk("posts/newPost", async (body) => {
   const response = await axios.post(
-    `http://localhost:5000/secure/posts?secret_token=${body.token}`,
+    `https://atomic-blog.herokuapp.com/secure/posts?secret_token=${body.token}`,
     { post_title: body.post_title, post_text: body.post_text }
   );
   return response.data;
@@ -22,7 +22,7 @@ export const newPost = createAsyncThunk("posts/newPost", async (body) => {
 
 export const deletePost = createAsyncThunk("posts/deletePost", async (body) => {
   const response = await axios.delete(
-    `http://localhost:5000/secure/posts/${body.postId}?secret_token=${body.token}`
+    `https://atomic-blog.herokuapp.com/secure/posts/${body.postId}?secret_token=${body.token}`
   );
   return response.data;
 });
@@ -31,7 +31,7 @@ export const updatePost = createAsyncThunk(
   "posts/updatePosts",
   async (body) => {
     const response = await axios.put(
-      `http://localhost:5000/secure/posts/${body.postId}/update?secret_token=${body.token}`,
+      `https://atomic-blog.herokuapp.com/secure/posts/${body.postId}/update?secret_token=${body.token}`,
       { post_title: body.post_title, post_text: body.post_text }
     );
     return response.data;
@@ -42,7 +42,7 @@ export const publishPost = createAsyncThunk(
   "posts/publishPost",
   async (body) => {
     const response = await axios.put(
-      `http://localhost:5000/secure/posts/${body.postId}/publish?secret_token=${body.token}`
+      `https://atomic-blog.herokuapp.com/secure/posts/${body.postId}/publish?secret_token=${body.token}`
     );
     return response.data;
   }

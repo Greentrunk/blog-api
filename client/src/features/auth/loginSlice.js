@@ -9,7 +9,7 @@ const initialState = {
 };
 
 export const login = createAsyncThunk("auth/login", async (creds) => {
-  const response = await axios.post("http://localhost:5000/auth/login", creds);
+  const response = await axios.post("https://atomic-blog.herokuapp.com/auth/login", creds);
   return response.data;
 });
 

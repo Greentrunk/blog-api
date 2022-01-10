@@ -4,6 +4,7 @@
   "description": "blog-api api",
   "main": "app.js",
   "type": "module",
+  "engines": {"node": "16.11.1"},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "devstart": "nodemon",

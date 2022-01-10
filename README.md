@@ -9,7 +9,7 @@ Atomic Blog is a modernized blogging web application with simplicity and user ex
 ![alt text](https://github.com/CJPohl/blog-api/blob/main/images/all-posts.png?raw=true)
 
 ## Live Deployment
-link
+https://atomic-blog.netlify.app/
 
 ## Find The Developer
 link

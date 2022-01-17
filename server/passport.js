@@ -11,6 +11,7 @@ const LocalStrategy = passportLocal.Strategy;
 
 import Admin from './models/admin.js';
 
+// Local login strategy
 passport.use(new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password'
@@ -32,6 +33,7 @@ async (username, password, done) => {
     }
 }));
 
+// JWT strategy
 passport.use(
     new JWTstrategy(
         {

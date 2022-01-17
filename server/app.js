@@ -27,6 +27,7 @@ app.use(cors());
 import './passport.js';
 app.use(passport.initialize());
 
+// App use routes
 app.use('/auth', auth);
 app.use('/secure/posts', passport.authenticate('jwt', {session: false}), secureRouter);
 app.use('/posts', clientRouter);

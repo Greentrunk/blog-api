@@ -17,7 +17,8 @@ export const Login = () => {
 
   const navigate = useNavigate();
 
-  const attemptLogin = async (str) => {
+  // If inputs are filled allow submit
+  const attemptLogin = async () => {
     if (canLogin) {
       try {
         await dispatch(login({ username, password })).unwrap();

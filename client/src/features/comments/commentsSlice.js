@@ -7,6 +7,7 @@ const initialState = {
   error: null,
 };
 
+// Fetch all comments
 export const fetchComments = createAsyncThunk(
   "comments/fetchComments",
   async (post) => {
@@ -18,6 +19,7 @@ export const fetchComments = createAsyncThunk(
   }
 );
 
+// Add new comment
 export const addNewComment = createAsyncThunk(
   "comments/addNewComment",
   async (comment) => {
@@ -29,6 +31,7 @@ export const addNewComment = createAsyncThunk(
   }
 );
 
+// Delete a comment
 export const deleteComment = createAsyncThunk(
   "comments/deleteComment",
   async (body) => {
@@ -39,6 +42,7 @@ export const deleteComment = createAsyncThunk(
   }
 );
 
+// Comment reducers
 const commentsSlice = createSlice({
   name: "comments",
   initialState,

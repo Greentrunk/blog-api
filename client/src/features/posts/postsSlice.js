@@ -7,11 +7,13 @@ const initialState = {
   error: null,
 };
 
+// Fetch all
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   const response = await axios.get("https://atomic-blog.herokuapp.com/posts");
   return response.data;
 });
 
+// Create new post
 export const newPost = createAsyncThunk("posts/newPost", async (body) => {
   const response = await axios.post(
     `https://atomic-blog.herokuapp.com/secure/posts?secret_token=${body.token}`,
@@ -20,6 +22,7 @@ export const newPost = createAsyncThunk("posts/newPost", async (body) => {
   return response.data;
 });
 
+// Delete a post
 export const deletePost = createAsyncThunk("posts/deletePost", async (body) => {
   const response = await axios.delete(
     `https://atomic-blog.herokuapp.com/secure/posts/${body.postId}?secret_token=${body.token}`
@@ -27,6 +30,7 @@ export const deletePost = createAsyncThunk("posts/deletePost", async (body) => {
   return response.data;
 });
 
+// Update a post
 export const updatePost = createAsyncThunk(
   "posts/updatePosts",
   async (body) => {
@@ -38,6 +42,7 @@ export const updatePost = createAsyncThunk(
   }
 );
 
+// Update an unpublished post
 export const publishPost = createAsyncThunk(
   "posts/publishPost",
   async (body) => {
@@ -48,6 +53,7 @@ export const publishPost = createAsyncThunk(
   }
 );
 
+// Post reducers
 const postsSlice = createSlice({
   name: "posts",
   initialState,

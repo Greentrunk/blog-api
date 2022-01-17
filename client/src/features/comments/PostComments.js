@@ -16,6 +16,8 @@ export const PostComments = (props) => {
   const commentsStatus = useSelector((state) => state.comments.status);
   const token = useSelector(selectToken);
   const isLoggedIn = useSelector(selectLoggedIn);
+
+  // Attempt to delete comment
   const attemptDelete = async (commentId) => {
     try {
       await dispatch(deleteComment({ commentId, token })).unwrap();
@@ -24,6 +26,7 @@ export const PostComments = (props) => {
     }
   };
 
+  // If admin is logged in show delete button
   const deleteBtn = (commentId) =>
     isLoggedIn ? (
       <button type="button" onClick={() => attemptDelete(commentId)}>
@@ -33,6 +36,7 @@ export const PostComments = (props) => {
       ""
     );
 
+  // Fetch post comments from server
   useEffect(() => {
     if (commentsStatus === "idle") {
       dispatch(fetchComments({ post }));

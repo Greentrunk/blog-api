@@ -16,6 +16,7 @@ export const AddCommentForm = (props) => {
 
   const canSubmit = [comment_handle, comment_text].every(Boolean);
 
+  // If inputs are filled submit new comment
   const addComment = async () => {
     if (canSubmit) {
       await dispatch(

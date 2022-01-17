@@ -11,6 +11,8 @@ export const UnpublishedPosts = () => {
   const token = useSelector(selectToken);
   const isLoggedIn = useSelector(selectLoggedIn);
 
+
+  // Set unpublished status to published
   const attemptPublish = (postId) => {
     try {
       dispatch(publishPost({ postId, token }));

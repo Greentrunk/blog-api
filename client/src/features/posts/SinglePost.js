@@ -17,6 +17,7 @@ export const SinglePost = () => {
   const isLoggedIn = useSelector(selectLoggedIn);
   const navigate = useNavigate();
 
+  // Delete post to server
   const attemptDelete = async () => {
     try {
       await dispatch(deletePost({ postId, token })).unwrap();
@@ -26,6 +27,7 @@ export const SinglePost = () => {
     }
   };
 
+  // If admin is logged in show delete button
   const deleteBtn = isLoggedIn ? (
     <button
       type="button"
@@ -37,6 +39,7 @@ export const SinglePost = () => {
   ) : (
     ""
   );
+  // If admin is logged in show update button
   const updateBtn = isLoggedIn ? (
     <Link
       to={`/posts/update/${postId}`}

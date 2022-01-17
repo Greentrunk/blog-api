@@ -1,5 +1,6 @@
 import React from "react";
 
+// Unauthorized
 export const Forbidden = () => {
   return (
     <section className="w-4/5 max-w-7xl mx-auto py-10 flex flex-col items-center gap-3">

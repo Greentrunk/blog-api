@@ -11,6 +11,7 @@ export const AllPosts = () => {
   const isLoggedIn = useSelector(selectLoggedIn);
   const postStatus = useSelector((state) => state.posts.status);
 
+  // Show unpublished post link is admin is logged in
   const unpublishedList = isLoggedIn ? (
     <Link
       to={`/posts/unpublished`}
@@ -21,7 +22,8 @@ export const AllPosts = () => {
   ) : (
     ""
   );
-
+  
+  // Fetch posts from server
   useEffect(() => {
     if (postStatus === "idle") {
       dispatch(fetchPosts());

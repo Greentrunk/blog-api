@@ -8,11 +8,13 @@ const initialState = {
   error: null,
 };
 
+// Login attempt
 export const login = createAsyncThunk("auth/login", async (creds) => {
   const response = await axios.post("https://atomic-blog.herokuapp.com/auth/login", creds);
   return response.data;
 });
 
+// Login reducers
 const loginSlice = createSlice({
   name: "login",
   initialState,

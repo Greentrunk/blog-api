@@ -20,6 +20,7 @@ export const NewPostForm = () => {
 
   const canSubmit = [post_title, post_text].every(Boolean);
 
+  // If inputs are filled allow user to submit
   const attemptNewPost = async () => {
     if (canSubmit) {
       try {

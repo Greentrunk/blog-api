@@ -19,6 +19,7 @@ export const UpdatePostForm = () => {
   const onTitleChange = (e) => updateTitle(e.target.value);
   const onTextChange = (e) => updateText(e.target.value);
 
+  // Update post content and title with new edits
   const attemptEdit = async () => {
     try {
       dispatch(
